@@ -1,0 +1,30 @@
+# Docker and Git specific files
+Dockerfile
+.dockerignore
+.git
+.gitignore
+
+# Dependencies - we will install these inside the container
+node_modules
+
+# Build artifacts - we will generate these inside the container
+dist
+.astro
+
+# Environment variables and secrets - NEVER include these in an image
+.env
+.env.*
+!.env.example
+
+# Common log files
+npm-debug.log*
+*.log
+
+# Editor and OS-specific files
+.vscode
+.idea
+Thumbs.db
+.DS_Store
+
+# Optional: Documentation files
+README.md
