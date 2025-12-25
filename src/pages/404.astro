@@ -1,0 +1,35 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ArrowLeft from "../components/icons/ArrowLeft.astro";
+---
+<Layout title="404 - Page Not Found" description="The page you're looking for doesn't exist.">
+    <main class="min-h-screen flex items-center justify-center p-4">
+        <section class="w-full max-w-2xl">
+            <article role="article">
+                <div class="rounded-lg bg-card text-card-foreground p-6">
+                    <div class="flex flex-col items-center space-y-4 text-center">
+                        <h1 class="text-6xl font-bold tracking-tight text-foreground/20 select-none">
+                            404
+                        </h1>
+                        <div class="flex flex-col space-y-1.5">
+                            <h2 class="text-xl font-semibold leading-none">
+                                Page Not Found
+                            </h2>
+                        </div>
+                        <p class="text-pretty font-mono text-sm text-foreground/80 print:text-[12px]">
+                            The page you're looking for doesn't exist or has been moved.
+                        </p>
+                        <div class="pt-4">
+                            <a class="inline-flex items-center justify-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                               href="/"
+                            >
+                                <ArrowLeft class="size-4"/>
+                                Back to Home
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </main>
+</Layout>

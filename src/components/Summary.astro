@@ -1,0 +1,12 @@
+---
+import {CV_DATA} from '../data/cv';
+
+const {summary} = CV_DATA;
+---
+<section class="flex min-h-0 flex-col gap-y-3 print:gap-y-1">
+    <h2 class="text-xl font-bold" id="about-section">About</h2>
+    <div class="text-pretty font-mono text-sm text-foreground/80 print:text-[12px]"
+         aria-labelledby="about-section">
+        {summary}
+    </div>
+</section>

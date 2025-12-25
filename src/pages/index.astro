@@ -1,0 +1,26 @@
+---
+import {CV_DATA} from '../data/cv';
+import Layout from '../layouts/Layout.astro';
+import Header from "../components/Header.astro";
+import Summary from "../components/Summary.astro";
+import WorkExperience from "../components/WorkExperience.astro";
+import Education from "../components/Education.astro";
+import Skills from "../components/Skills.astro";
+import PrintInstruction from "../components/PrintInstruction.astro";
+
+const {name, about} = CV_DATA;
+---
+<Layout title={`${name} | CV`} description={about}>
+    <main class="container relative mx-auto scroll-my-12 overflow-auto p-4 print:p-11 md:p-16" id="main-content">
+        <section class="mx-auto w-full max-w-2xl space-y-8 bg-white print:space-y-4" aria-label="CV Content">
+            <Header/>
+            <div class="space-y-8 print:space-y-4">
+                <Summary/>
+                <WorkExperience/>
+                <Education/>
+                <Skills/>
+            </div>
+        </section>
+        <PrintInstruction/>
+    </main>
+</Layout>

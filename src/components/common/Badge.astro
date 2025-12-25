@@ -1,0 +1,19 @@
+---
+interface Props {
+    variant?: "primary" | "secondary";
+}
+
+const {variant = "primary"} = Astro.props;
+---
+<div class:list={[
+    "inline-flex items-center rounded-md border border-transparent px-2 py-0.5 align-middle text-xs font-mono font-semibold text-nowrap transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+    {
+        "bg-primary/80 text-primary-foreground hover:bg-primary/60 print:text-[10px]":
+            variant === "primary",
+
+        "bg-secondary text-secondary-foreground hover:bg-secondary/60 print:px-1 print:py-0.5 print:text-[10px] print:leading-tight":
+            variant === "secondary",
+    }
+]}>
+    <slot/>
+</div>

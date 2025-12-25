@@ -1,0 +1,52 @@
+---
+import Badge from "./common/Badge.astro";
+import type {Work} from "../data/cv";
+
+interface Props extends Work {
+}
+
+const {company, link, title, start, end, description, achievements, badges} = Astro.props
+---
+<article role="article">
+    <div class="rounded-lg bg-card text-card-foreground py-1 print:py-0">
+        <div class="flex flex-col space-y-1.5 print:space-y-1">
+            <div class="flex items-center justify-between gap-x-2 text-base">
+                <h3 class="inline-flex items-center justify-center gap-x-1 font-semibold leading-none print:text-sm">
+                    <a class="hover:underline"
+                       href={link}
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       aria-label={`${company} company link`}>
+                        {company}
+                    </a>
+                </h3>
+                <div class="text-sm tabular-nums text-gray-500"
+                     aria-label=`Employment period: ${start} to ${end ?? 'Present'}`>
+                    {start} - {end ?? 'Present'}
+                </div>
+            </div>
+            <h4 class="font-mono text-sm font-semibold leading-none flex flex-col space-y-1.5 print:text-[12px]">
+                {title}
+            </h4>
+        </div>
+        <div class="text-pretty font-mono text-sm text-muted-foreground">
+            <div class="mt-2 text-xm text-foreground/80 print:mt-1 print:text-[12px] text-pretty">
+                {description}
+                <ul class="list-inside list-disc">
+                {achievements?.map((achievement) => (
+                    <li>{achievement}</li>
+                ))}
+                </ul>
+            </div>
+            <div class="mt-2">
+                <ul class="flex list-none flex-wrap gap-1 p-0" aria-label="Technologies used">
+                    {badges?.map((badge) => (
+                            <li>
+                                <Badge variant="secondary">{badge}</Badge>
+                            </li>
+                    ))}
+                </ul>
+            </div>
+        </div>
+    </div>
+</article>
