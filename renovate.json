@@ -1,0 +1,41 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":semanticCommits"
+  ],
+  "description": "Renovate configuration for Astro CV project",
+
+  "timezone": "Etc/UTC",
+  "schedule": ["after 7am and before 4pm"],
+
+  "dependencyDashboard": false,
+
+  "automerge": false,
+  "rebaseWhen": "behind-base-branch",
+
+  "labels": ["dependencies"],
+
+  "minimumReleaseAge": "3 days",
+
+  "prHourlyLimit": 5,
+  "prConcurrentLimit": 10,
+
+  "packageRules": [
+    {
+      "description": "Group all non-major updates into a single maintenance PR",
+      "matchPackagePatterns": ["*"],
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "groupName": "all non-major dependencies",
+      "groupSlug": "all-non-major"
+    },
+    {
+      "description": "Major updates require manual review with 7-day delay",
+      "matchUpdateTypes": ["major"],
+      "minimumReleaseAge": "7 days",
+      "labels": ["dependencies", "major", "breaking-change"],
+      "prPriority": -1,
+      "groupName": null
+    }
+  ]
+}
