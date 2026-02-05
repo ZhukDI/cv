@@ -12,7 +12,7 @@ COPY . .
 RUN npm run build
 
 # ---- Stage 2: Serve the static files with Nginx ----
-FROM nginx:1.29.3-alpine AS runtime
+FROM nginx:1.29.4-alpine AS runtime
 
 # Copy ALL nginx config files
 COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
