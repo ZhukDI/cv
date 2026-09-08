@@ -71,6 +71,26 @@ All commands are run from the root of the project, from a terminal:
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
 
+## ☁️ Deployment
+
+### Cloudflare Pages (production)
+
+The site runs on [Cloudflare Pages](https://pages.cloudflare.com/) and is connected to this GitHub repository:
+
+- Push or merge to `main` → automatic production build and deploy
+- Pull requests → automatic preview builds (see the `Cloudflare Pages` check on the PR for the preview URL and logs)
+
+### Docker (self-hosted alternative)
+
+If you prefer not to use Cloudflare, the site can be served from an nginx container:
+
+```bash
+docker build -t zhukdi/dzhuk-cv:latest .
+docker compose up -d   # serves the image on http://localhost:8080
+```
+
+The multi-stage `Dockerfile` builds the site with Node and serves `dist/` via nginx.
+
 ## 🤝 Contributing
 
 Contributions are welcome! Feel free to:
