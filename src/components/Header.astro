@@ -1,26 +1,22 @@
 ---
 import {CV_DATA} from '../data/cv';
 import LinkButton from "./common/LinkButton.astro";
-import LinkedIn from "./icons/LinkedIn.astro";
-import GitHub from "./icons/GitHub.astro";
-import Email from "./icons/Email.astro";
-import Phone from "./icons/Phone.astro";
-import Globe from "./icons/Globe.astro";
+import Icon from "./icons/Icon.astro";
 
 import {Image} from 'astro:assets'
 import avatarImage from '../assets/avatar.jpeg';
 
 const {name, about, personalWebsiteUrl, contact, location, locationLink} = CV_DATA;
 
-const socialIcons: Record<string, typeof GitHub | typeof LinkedIn> = {
-    GitHub,
-    LinkedIn,
+const socialIcons: Record<string, "github" | "linkedin"> = {
+    GitHub: "github",
+    LinkedIn: "linkedin",
 };
 
 const socialLinks = contact.social.map((social) => ({
     name: social.name,
     url: social.url,
-    Icon: socialIcons[social.name],
+    icon: socialIcons[social.name],
 }));
 
 const printLinks = [
@@ -44,24 +40,24 @@ const printLinks = [
                target="_blank"
                rel="noopener noreferrer"
                aria-label={`Location: ${location}`}>
-                <Globe class="size-3"/>
+                <Icon name="globe" class="size-3"/>
                 {location}
             </a>
         </p>
         <div class="flex list-none gap-x-1 pt-1 font-mono text-sm text-foreground/80 print:hidden"
              aria-label="Contact links">
             <LinkButton href={personalWebsiteUrl} ariaLabel="Website">
-                <Globe class="size-4"/>
+                <Icon name="globe" class="size-4"/>
             </LinkButton>
             <LinkButton href={`mailto:${contact.email}`} ariaLabel="Email">
-                <Email class="size-4"/>
+                    <Icon name="email" class="size-4"/>
             </LinkButton>
             <LinkButton href={`tel:${contact.tel}`} ariaLabel="Phone">
-                <Phone class="size-4"/>
+                    <Icon name="phone" class="size-4"/>
             </LinkButton>
-            {socialLinks.map(({name: socialName, url, Icon}) => (
+            {socialLinks.map(({name: socialName, url, icon}) => (
                 <LinkButton href={url} ariaLabel={socialName}>
-                    <Icon class="size-4"/>
+                    <Icon name={icon} class="size-4"/>
                 </LinkButton>
             ))}
         </div>
