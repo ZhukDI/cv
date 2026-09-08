@@ -1,8 +1,8 @@
 # CV
 
-[![Astro](https://img.shields.io/badge/Astro-5.16-BC52EE?logo=astro)](https://astro.build/)
+[![Astro](https://img.shields.io/badge/Astro-7.2-BC52EE?logo=astro)](https://astro.build/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?logo=typescript)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-4.1-11B2AC?logo=tailwind-css)](https://tailwindcss.com/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-4.3-11B2AC?logo=tailwind-css)](https://tailwindcss.com/)
 [![Docker](https://img.shields.io/badge/Docker-ready-2496ED?logo=docker)](https://www.docker.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -28,7 +28,7 @@ A clean and modern web app that renders a minimalist CV/Resume with a print-frie
 
 ### Prerequisites
 
-- Node.js 22+
+- Node.js 22.12+
 
 ### Installation
 
