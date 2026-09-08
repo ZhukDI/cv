@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import {CV_DATA} from "../data/cv";
 
 export interface Props {
     title: string;
@@ -11,11 +12,33 @@ const {title, description, image = "/og-image.png"} = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const socialImageURL = new URL(image, Astro.site);
+const imageAlt = `${CV_DATA.name} — ${CV_DATA.title}`;
+
+const profileSchema = {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "mainEntity": {
+        "@type": "Person",
+        "name": CV_DATA.name,
+        "jobTitle": CV_DATA.title,
+        "description": CV_DATA.about,
+        "url": CV_DATA.personalWebsiteUrl,
+        "email": `mailto:${CV_DATA.contact.email}`,
+        "telephone": CV_DATA.contact.tel,
+        "addressLocality": CV_DATA.location,
+        "alumniOf": CV_DATA.education.map((entry) => (
+            {"@type": "CollegeOrUniversity", "name": entry.school}
+        )),
+        "sameAs": CV_DATA.contact.social.map((social) => social.url),
+    },
+};
 ---
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width"/>
+    <meta name="generator" content={Astro.generator}/>
+    <meta name="theme-color" content="#ffffff"/>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
     <link rel="sitemap" href="/sitemap-index.xml"/>
     <title>{title}</title>
@@ -26,12 +49,16 @@ const socialImageURL = new URL(image, Astro.site);
     <meta property="og:description" content={description}/>
     <meta property="og:url" content={canonicalURL}/>
     <meta property="og:image" content={socialImageURL}/>
+    <meta property="og:image:alt" content={imageAlt}/>
     <meta property="og:type" content="profile"/>
 
     <meta name="twitter:card" content="summary_large_image"/>
     <meta name="twitter:title" content={title}/>
     <meta name="twitter:description" content={description}/>
     <meta name="twitter:image" content={socialImageURL}/>
+    <meta name="twitter:image:alt" content={imageAlt}/>
+
+    <script type="application/ld+json" set:html={JSON.stringify(profileSchema)}/>
 </head>
 <body>
 <slot/>
