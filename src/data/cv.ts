@@ -133,7 +133,7 @@ export const CV_DATA: CV = {
         },
     ],
     skills: [
-        "Java (8, 11, 21)", "Spring Boot", "Hibernate", "Kafka", "Maven", "AWS", "Angular", "SQL", "PostreSQL", "Docker",
+        "Java (8, 11, 21)", "Spring Boot", "Hibernate", "Kafka", "Maven", "AWS", "Angular", "SQL", "PostgreSQL", "Docker",
         "JUnit", "Mockito", "REST"
     ],
 };

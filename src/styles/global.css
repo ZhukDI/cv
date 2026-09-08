@@ -100,5 +100,5 @@
 }
 
 .print-force-new-page {
-    page-break-before: always;
+    break-before: page;
 }

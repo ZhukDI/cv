@@ -6,7 +6,7 @@ const {education} = CV_DATA;
 ---
 <section class="flex min-h-0 flex-col gap-y-3 print:gap-y-1">
     <h2 class="text-xl font-bold" id="education-section">Education</h2>
-    <div class="space-y-4" role="feed" aria-labelledby="education-section">
+    <div class="space-y-4">
         {education.map((entry) => (
                 <EducationItem {...entry}/>
         ))}
