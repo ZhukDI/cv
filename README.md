@@ -12,6 +12,7 @@ A clean and modern web app that renders a minimalist CV/Resume with a print-frie
 
 - 📝 **Single Config File** - Update all your cv data in [one place](./src/data/cv.ts)
 - 🎨 **Minimalist Design** - Clean, professional layout focused on content
+- 🌓 **Dark Mode** - Follows the system theme (`prefers-color-scheme`) with no JavaScript; print stays light
 - 📱 **Responsive** - Looks great on all devices, from mobile to desktop
 - 🖨️ **Print Optimized** - Specially designed print styles for physical copies
 - ⚡ **Zero JavaScript** - Ships with no client-side JS for lightning-fast loads
