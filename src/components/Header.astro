@@ -11,6 +11,24 @@ import {Image} from 'astro:assets'
 import avatarImage from '../assets/avatar.jpeg';
 
 const {name, about, personalWebsiteUrl, contact, location, locationLink} = CV_DATA;
+
+const socialIcons: Record<string, typeof GitHub | typeof LinkedIn> = {
+    GitHub,
+    LinkedIn,
+};
+
+const socialLinks = contact.social.map((social) => ({
+    name: social.name,
+    url: social.url,
+    Icon: socialIcons[social.name],
+}));
+
+const printLinks = [
+    {href: personalWebsiteUrl, label: personalWebsiteUrl},
+    {href: `mailto:${contact.email}`, label: contact.email},
+    {href: `tel:${contact.tel}`, label: contact.tel},
+    ...contact.social.map((social) => ({href: social.url, label: social.url})),
+];
 ---
 <header class="flex items-center justify-between">
     <div class="flex-1 space-y-1.5">
@@ -41,32 +59,21 @@ const {name, about, personalWebsiteUrl, contact, location, locationLink} = CV_DA
             <LinkButton href={`tel:${contact.tel}`} ariaLabel="Phone">
                 <Phone class="size-4"/>
             </LinkButton>
-            <LinkButton href={contact.social[0].url} ariaLabel={contact.social[0].name}>
-                <GitHub class="size-4"/>
-            </LinkButton>
-            <LinkButton href={contact.social[1].url} ariaLabel={contact.social[1].name}>
-                <LinkedIn class="size-4"/>
-            </LinkButton>
+            {socialLinks.map(({name: socialName, url, Icon}) => (
+                <LinkButton href={url} ariaLabel={socialName}>
+                    <Icon class="size-4"/>
+                </LinkButton>
+            ))}
         </div>
         <div class="hidden gap-x-2 font-mono text-sm text-foreground/80 print:flex print:flex-wrap gap-y-1 print:text-[12px]">
-            <a class="underline hover:text-foreground/70" href={personalWebsiteUrl}>
-                {personalWebsiteUrl}
-            </a>
-            <span aria-hidden="true">|</span>
-            <a class="underline hover:text-foreground/70" href={`mailto:${contact.email}`}>
-                {contact.email}
-            </a>
-            <span aria-hidden="true">|</span>
-            <a class="underline hover:text-foreground/70" href={`tel:${contact.tel}`}>
-                {contact.tel}
-            </a>
-            <a class="underline hover:text-foreground/70" href={contact.social[0].url}>
-                {contact.social[0].url}
-            </a>
-            <span aria-hidden="true">|</span>
-            <a class="underline hover:text-foreground/70" href={contact.social[1].url}>
-                {contact.social[1].url}
-            </a>
+            {printLinks.map(({href, label}, index) => (
+                <>
+                    {index > 0 && <span aria-hidden="true">|</span>}
+                    <a class="underline hover:text-foreground/70" href={href}>
+                        {label}
+                    </a>
+                </>
+            ))}
         </div>
     </div>
     <span class="relative flex shrink-0 overflow-hidden rounded-xl size-28"
