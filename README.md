@@ -92,6 +92,10 @@ docker compose up -d   # serves the image on http://localhost:8080
 
 The multi-stage `Dockerfile` builds the site with Node and serves `dist/` via nginx.
 
+## 📚 Documentation
+
+- [Useful tools for SEO & performance](./docs/useful-tools.md) - Online tools for checking page speed, meta tags, structured data, and more
+
 ## 🤝 Contributing
 
 Contributions are welcome! Feel free to:
