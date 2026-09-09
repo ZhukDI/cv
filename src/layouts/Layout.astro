@@ -1,41 +1,43 @@
 ---
 import "../styles/global.css";
-import {CV_DATA} from "../data/cv";
+import {CV_DATA, type CV} from "../data/cv";
 
 export interface Props {
     title: string;
     description: string;
     image?: string;
+    cv?: CV;
+    noindex?: boolean;
 }
 
-const {title, description, image = "/og-image.png"} = Astro.props;
+const {title, description, image = "/og-image.png", cv = CV_DATA, noindex = false} = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const socialImageURL = new URL(image, Astro.site);
-const imageAlt = `${CV_DATA.name} — ${CV_DATA.title}`;
+const imageAlt = `${cv.name} — ${cv.title}`;
 
-const [addressLocality = "", addressCountry = ""] = CV_DATA.location.split(",").map((part) => part.trim());
+const [addressLocality = "", addressCountry = ""] = cv.location.split(",").map((part) => part.trim());
 
 const profileSchema = {
     "@context": "https://schema.org",
     "@type": "ProfilePage",
     "mainEntity": {
         "@type": "Person",
-        "name": CV_DATA.name,
-        "jobTitle": CV_DATA.title,
-        "description": CV_DATA.about,
-        "url": CV_DATA.personalWebsiteUrl,
-        "email": `mailto:${CV_DATA.contact.email}`,
-        "telephone": CV_DATA.contact.tel,
+        "name": cv.name,
+        "jobTitle": cv.title,
+        "description": cv.about,
+        "url": cv.personalWebsiteUrl,
+        "email": `mailto:${cv.contact.email}`,
+        "telephone": cv.contact.tel,
         "address": {
             "@type": "PostalAddress",
             "addressLocality": addressLocality,
             "addressCountry": addressCountry,
         },
-        "alumniOf": CV_DATA.education.map((entry) => (
+        "alumniOf": cv.education.map((entry) => (
             {"@type": "CollegeOrUniversity", "name": entry.school}
         )),
-        "sameAs": CV_DATA.contact.social.map((social) => social.url),
+        "sameAs": cv.contact.social.map((social) => social.url),
     },
 };
 ---
@@ -51,6 +53,7 @@ const profileSchema = {
     <title>{title}</title>
     <meta name="description" content={description}/>
     <link rel="canonical" href={canonicalURL.href} />
+    {noindex && <meta name="robots" content="noindex, nofollow"/>}
 
     <meta property="og:title" content={title}/>
     <meta property="og:description" content={description}/>

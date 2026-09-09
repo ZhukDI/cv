@@ -1,7 +1,12 @@
 ---
-import {CV_DATA} from '../data/cv';
+import {CV_DATA, type CV} from '../data/cv';
 
-const {summary} = CV_DATA;
+interface Props {
+    cv?: CV;
+}
+
+const {cv = CV_DATA} = Astro.props;
+const {summary} = cv;
 ---
 <section class="flex min-h-0 flex-col gap-y-3 print:gap-y-1">
     <h2 class="text-xl font-bold" id="about-section">About</h2>
