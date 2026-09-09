@@ -1,12 +1,20 @@
 ---
-import {CV_DATA} from '../data/cv';
+import {CV_DATA, type CV} from '../data/cv';
 import LinkButton from "./common/LinkButton.astro";
 import Icon from "./icons/Icon.astro";
 
 import {Image} from 'astro:assets'
-import avatarImage from '../assets/avatar.jpeg';
+import type {ImageMetadata} from 'astro';
+import defaultAvatar from '../assets/avatar.jpeg';
 
-const {name, about, personalWebsiteUrl, contact, location, locationLink} = CV_DATA;
+interface Props {
+    cv?: CV;
+    avatar?: ImageMetadata;
+}
+
+const {cv = CV_DATA, avatar = defaultAvatar} = Astro.props;
+
+const {name, about, personalWebsiteUrl, contact, location, locationLink} = cv;
 
 const socialIcons: Record<string, "github" | "linkedin"> = {
     GitHub: "github",
@@ -74,6 +82,6 @@ const printLinks = [
     </div>
     <span class="relative flex shrink-0 overflow-hidden rounded-xl size-28"
           aria-hidden="true">
-        <Image class="aspect-square h-full w-full" alt={`${name}'s profile picture`} src={avatarImage}/>
+        <Image class="aspect-square h-full w-full" alt={`${name}'s profile picture`} src={avatar}/>
     </span>
 </header>

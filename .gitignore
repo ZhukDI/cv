@@ -25,3 +25,6 @@ pnpm-debug.log*
 
 # vscode settings folder
 .vscode/
+
+# local theme listing draft (not part of the site)
+docs/theme-listing.md

@@ -11,5 +11,10 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
   site: 'https://cv.dzhuk.com',
-  integrations: [sitemap()]
+  integrations: [
+    sitemap({
+      // The /demo page shows fictional data for the theme listing — keep it out of search indexes.
+      filter: (page) => !page.includes('/demo')
+    })
+  ]
 });
