@@ -33,3 +33,7 @@ Astro 7 static CV site (single page, zero client-side JS). Content, layout, and 
 
 - Node 22+ required (README); Dockerfile uses Node 24.
 - Dependency updates come via Renovate (semantic-commit PR titles, grouped non-major updates) — don't hand-edit `package-lock.json`.
+
+## Related repositories
+
+- `../dzhuk-com` — personal landing page (dzhuk.com) linking to this CV site; shared branding. Check it when changing links or design tokens.
